@@ -1,0 +1,67 @@
+<div id="login-container" >
+	
+	
+	<div id="login-header" >
+		
+		<h3>Sign Up!</h3>
+		
+	</div> <!-- /login-header -->
+	
+	<div id="login-content" class="clearfix" >
+	
+	<form action="/login/create" method="post">
+		<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>"
+				<fieldset>
+					<div class="control-group" >
+						<label class="control-label" for="first_name" >First Name</label>
+						<div class="controls" >
+							<input type="text" name="user[first_name]" class="" id="first_name" />
+						</div>
+					</div>
+					<div class="control-group" >
+						<label class="control-label" for="last_name" >Last Name</label>
+						<div class="controls" >
+							<input type="text" name="user[last_name]" class="" id="last_name" />
+						</div>
+					</div>
+					<div class="control-group" >
+						<label class="control-label" for="username" >Username</label>
+						<div class="controls" >
+							<input type="text" name="user[username]" class="" id="username" />
+						</div>
+					</div>
+					<div class="control-group" >
+						<label class="control-label" for="email" >Email</label>
+						<div class="controls" >
+							<input type="text" name="user[email]" class="" id="email" />
+						</div>
+					</div>
+
+					<div class="control-group" >
+						<label class="control-label" for="password" >Password</label>
+						<div class="controls" >
+							<input type="password" name="user[password]" class="" id="password" />
+						</div>
+					</div>
+				</fieldset>
+			
+				
+				<div class="pull-right" >
+					<button type="submit" class="btn btn-warning btn-large" >
+						Submit
+					</button>
+				</div>
+			</form>
+			
+		</div> <!-- /login-content -->
+		
+		
+		<div id="login-extra" >
+			
+			<p>Don't have an account? <a href="javascript:;" >Sign Up.</a></p>
+			
+			<p>Remind Password? <a href="forgot_password.html" >Retrieve.</a></p>
+			
+		</div> <!-- /login-extra -->
+	
+</div>

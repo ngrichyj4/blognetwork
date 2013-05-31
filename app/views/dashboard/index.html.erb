@@ -1,0 +1,117 @@
+<div class="span9" >
+				
+				<h1 class="page-title" >
+					<i class="icon-home" ></i>
+					Dashboard					
+				</h1>
+				
+				<div class="stat-container" >
+										
+					<div class="stat-holder" >						
+						<div class="stat" >							
+							<span><%=@current_user.groups.count%></span>							
+							Blog Groups							
+						</div> <!-- /stat -->						
+					</div> <!-- /stat-holder -->
+					
+					<div class="stat-holder" >						
+						<div class="stat" >							
+							<span><%=@current_user.blogs.count%></span>							
+							Blogs							
+						</div> <!-- /stat -->						
+					</div> <!-- /stat-holder -->
+					
+					<div class="stat-holder" >						
+						<div class="stat" >							
+							<span><%=@current_user.tasks.size%></span>							
+							<a href="/dashboard/tasks">Queued Tasks</a>						
+						</div> <!-- /stat -->						
+					</div> <!-- /stat-holder -->
+				
+				</div> <!-- /stat-container -->
+				<%for i in (0..@current_user.groups.size-1)%>
+				<div class="widget widget-table action-table" >
+						
+					<div class="widget-header" >
+						<i class="icon-th-list" ></i>
+						<h3><%= @current_user.groups[i].name %></h3>
+					</div> <!-- /widget-header -->
+					
+					<div class="widget-content" >
+						
+						<table class="table table-striped table-bordered" >
+							<thead>
+								<tr>
+									<th>Status</th>
+									<th>Url/Custom Domain</th>
+									<th class="td-actions" >
+										
+								            <div class="controls">
+								           <form action="/blog/express" method="post">
+								           	<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+								           	<input name="grp_id" type="hidden" value="<%= @current_user.groups[i].id %>">
+								              <select name="qty" id="select01">
+								                <option>How many blogs</option>
+								                <%for k in (1..10)%>
+								                <option><%= k %></option>
+								                <%end%>
+								        
+								              </select>
+								              <button class="btn btn-inverse" type="submit" style="position:relative; left:0; top:-5px; " href="" >Create</button>
+								          </form>
+								            </div>
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+							 <%for j in (0..@current_user.groups[i].blogs.size-1) %>
+								<tr>
+									<td><%=@current_user.groups[i].blogs[j].status%></td>
+									<td><%="#{@current_user.groups[i].blogs[j].url} | #{@current_user.groups[i].blogs[j].custom_domain}"%></td>
+									<td class="td-actions" >
+									<div class="btn-group" >
+         							 <button class="btn btn-info dropdown-toggle" data-toggle="dropdown" style="width:115px; " >Menu <span class="caret" ></span></button>
+         							 <ul class="dropdown-menu" >
+           							 <li><a href="/blog/configure/<%= @current_user.groups[i].blogs[j].id %>" >Configure</a></li>
+            							 <li><a href="/blog/new/<%= @current_user.groups[i].blogs[j].id %>" >Publish Post</a></li>
+            							 <li><a target="_blank" href="<%= @current_user.groups[i].blogs[j].url %>" >Open Blog</a>
+           							 <li class="divider" ></li>
+           							 <li><a data-toggle="modal" href="#setDNS" >Set DNS</a></li> </li>
+          							</ul>
+        							</div>
+									</td>
+								</tr>
+								<%end%>
+								</tbody>
+							</table>
+						
+					</div> <!-- /widget-content -->
+				
+				</div> <!-- TABLE DEMO -->
+				<%end%>
+				<div class="row" >
+					
+					<div class="span5" >
+									
+						<div class="widget" >
+							
+							<div class="widget-header" >
+								<h3>Walk Through</h3>
+							</div> <!-- /widget-header -->
+																
+							<div class="widget-content" >
+								<p><strong>CdNB2B</strong> is super easy to use, to get started! </p>
+								<p><strong>1)</strong> Create a blog group.</p>
+								<p><strong>2)</strong> Add blogs to blog group.</p>
+								<p><strong>3)</strong> Add domain to each blog.</p>
+								<p><strong>4)</strong> Set DNS for each blog.</p>
+								<p><strong>Thats it</strong>, Suppa! Duppa! Simple..</p>
+							</div> <!-- /widget-content -->
+							
+						</div> <!-- /widget -->
+						
+					</div> <!-- /span5 -->
+		
+				</div> <!-- /row -->
+				
+			</div> <!-- /span9 -->

@@ -1,0 +1,105 @@
+<div class="span9" >
+				
+				<h1 class="page-title" >
+					<i class="icon-home" ></i>
+					Queued Tasks				
+				</h1>
+				
+				
+				
+				<div class="widget widget-table action-table" >
+						
+					<div class="widget-header" >
+						<i class="icon-th-list" ></i>
+						<h3>Tasks</h3>
+					</div> <!-- /widget-header -->
+					
+					<div class="widget-content" >
+						
+						<table class="table table-striped table-bordered" >
+							<thead>
+								<tr>
+									<th>Status</th>
+									<th>Action</th>
+									<th>Qty/Domain</th>
+									<th>Blog Group</th>
+									<th>User Details</th>
+									<th class="td-actions" >
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+							 <%for i in (0..@current_user.tasks.size-1) %>
+								<tr>
+									<td><%=@current_user.tasks[i].status%></td>
+									<td><%=@current_user.tasks[i].action%></td>
+
+									<%if @current_user.tasks[i].action == "add_domain" %>
+										<td><%= @current_user.tasks[i].domain%></td>
+									<%else%>
+										<td><%=@current_user.tasks[i].qty%></td>
+									<%end%>
+									<td><%= Group.find(@current_user.tasks[i].grp_id).name%></td>
+									<% task_user = User.find(@current_user.tasks[i].usr_id) %>
+									<td><%= "#{task_user.name} | #{task_user.username}"%> </td>
+									<td class="td-actions" >
+									 <%if @current_user.super_admin%>
+										<div class="btn-group" >
+		         							 <button class="btn btn-info dropdown-toggle" data-toggle="dropdown" style="width:115px; " >Menu <span class="caret" ></span></button>
+		         							 <ul class="dropdown-menu" >
+		           							 <li><a href="/task/delete/<%= @current_user.tasks[i].id%>" >Remove Task</a></li>
+		           							 <li><a data-toggle="modal" href="#viewLog" >View Logs</a></li> </li>
+		           							 <li class="divider" ></li>
+		           							 <li><a id="runtask" href="/task/run/<%= @current_user.tasks[i].id%>" >Run Task</a></li> </li>
+		          							</ul>
+		          							<script src="../../../assets/js/jquery-1.7.2.min.js" ></script>
+		          							<script type="text/javascript">
+		          								 $('a#runtask').bind('click',function(event){
+												      event.preventDefault();
+												      
+												        $.get(this.href,{},function(response){ 
+												         
+												           var data = response[0]
+												           if(data == 1) {
+												              $('a#runtask').text("Done.");
+												            }
+												            else {
+												              $('a#runtask').text("Try again.");
+												             }
+												        });
+												     });
+		          							</script>
+	        							</div>
+        							<%end%>
+									</td>
+								</tr>
+								<%end%>
+								</tbody>
+							</table>
+						
+					</div> <!-- /widget-content -->
+				
+				</div> <!-- TABLE DEMO -->
+				
+				<div class="row" >
+					
+					<div class="span5" >
+									
+						<div class="widget" >
+							
+							<div class="widget-header" >
+								<h3>Heads Up!</h3>
+							</div> <!-- /widget-header -->
+																
+							<div class="widget-content" >
+								<p>This lists all your queued tasks, your tasks are handled autonomously depending on how many queues are in our background worker. Once a task it done it'd be marked as "completed". Tasks are completed on average of 5mins - 2 hrs. If you have any questions please submit a support ticket.</p>
+								
+							</div> <!-- /widget-content -->
+							
+						</div> <!-- /widget -->
+						
+					</div> <!-- /span5 -->
+		
+				</div> <!-- /row -->
+				
+			</div> <!-- /span9 -->

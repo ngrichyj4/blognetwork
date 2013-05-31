@@ -1,0 +1,52 @@
+<div id="login-container" >
+	
+	
+	<div id="login-header" >
+		
+		<h3>Login</h3>
+		
+	</div> <!-- /login-header -->
+	
+	<div id="login-content" class="clearfix" >
+	
+	<form action="/login/validate_user" method="post">
+		<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>"
+				<fieldset>
+					<div class="control-group" >
+						<label class="control-label" for="username" >Username</label>
+						<div class="controls" >
+							<input type="text" name="username" class="" id="username" />
+						</div>
+					</div>
+					<div class="control-group" >
+						<label class="control-label" for="password" >Password</label>
+						<div class="controls" >
+							<input type="password" name="password" class="" id="password" />
+						</div>
+					</div>
+				</fieldset>
+				
+				<div id="remember-me" class="pull-left" >
+					<input type="checkbox" name="remember" id="remember" />
+					<label id="remember-label" for="remember" >Remember Me</label>
+				</div>
+				
+				<div class="pull-right" >
+					<button type="submit" class="btn btn-warning btn-large" >
+						Login
+					</button>
+				</div>
+			</form>
+			
+		</div> <!-- /login-content -->
+		
+		
+		<div id="login-extra" >
+			
+			<p>Don't have an account? <a href="/signup" >Sign Up.</a></p>
+			
+			<!-- <p>Remind Password? <a href="forgot_password.html" >Retrieve.</a></p> -->
+			
+		</div> <!-- /login-extra -->
+	
+</div> <!-- /login-wrapper -->

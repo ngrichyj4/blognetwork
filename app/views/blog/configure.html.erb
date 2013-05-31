@@ -1,0 +1,48 @@
+<div id="login-container" >
+	
+	
+	<div id="login-header" >
+		
+		<h3>Configure - <%=@blog.url%></h3>
+		
+	</div> <!-- /login-header -->
+	
+	<div id="login-content" class="clearfix" >
+	
+	<form action="/blog/update" method="post">
+		<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+		<input name="blog_id" type="hidden" value="<%= @blog.id %>">
+				<fieldset>
+					<div class="control-group" >
+						<label class="control-label" for="username" >Username</label>
+						<div class="controls" >
+							<input type="text" name="username" class="" value="<%=decrypt(@blog.username, @blog.group.user.email) if @blog.username%>" id="username" />
+						</div>
+					</div>
+					<div class="control-group" >
+						<label class="control-label" for="password" >Password</label>
+						<div class="controls" >
+							<input type="password" name="password" class="" value="<%='password' if @blog.password%>" id="password" />
+						</div>
+					</div>
+					<div class="control-group" >
+						<label class="control-label" for="username" >Add Custom Domain</label>
+						<div class="controls" >
+							<input type="text" name="custom_domain" class="" value="<%=@blog.custom_domain%>" id="main" />
+						</div>
+					</div>
+				</fieldset>
+				
+				<div class="pull-right" >
+					<button type="submit" class="btn btn-info btn-large" >
+						Save
+					</button>
+				</div>
+				<br>
+				<label id="remember-label" for="remember" ><strong>Please note!</strong>, this does not configure your blog's username and password for you. We require this to post content on your blog, so please enter details you created during your initial setup via wp-admin.</label>
+			</form>
+			
+		</div> <!-- /login-content -->
+		
+	
+</div> <!-- /login-wrapper -->

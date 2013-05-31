@@ -1,0 +1,39 @@
+<div id="login-container" >
+	
+	
+	<div style="width:600px; " id="login-header" >
+		
+		<h3>Submit a Post On (<%=@blog.url%>)</h3>
+		
+	</div> <!-- /login-header -->
+	
+	<div  style="width:600px;" id="login-content" class="clearfix" >
+	
+	<form action="/blog/post" method="post" >
+			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+			<input name="id" type="hidden" value="<%= @blog.id %>">
+				<fieldset>
+					<div class="control-group" >
+						<label class="control-label" for="title" >Title</label>
+						<div class="controls" >
+							<input type="text" name="title" value="<%=@content_title%>" class="" id="title" />
+						</div>
+					</div>
+					<div class="control-group" >
+						<label class="control-label" for="post" >Post</label>
+						<div class="controls" >
+							<textarea class="ckeditor" cols="80" id="editor1" name="editor1" rows="10" ><%= @content %></textarea>
+						</div>
+					</div>
+				</fieldset>
+				
+				<div class="pull-right" >
+					<button type="submit" class="btn btn-warning btn-large" >
+						Publish
+					</button>
+				</div>
+			</form>
+			
+		</div> <!-- /login-content -->
+			
+</div> <!-- /login-wrapper -->
